@@ -1,10 +1,10 @@
 var locations = [
-    ['Jeddah', 21.285407, 39.237551, 105343],
-    ['Tabuk', 28.383508, 36.566191, 101628],
-    ['Umm Lajj', 25.021259, 37.268501, 100926],
-    ['Abha', 18.246468, 42.511724, 110690],
-    ['Dammam', 26.43442, 50.10326, 110336],
-    ['Riyadh', 24.713552, 46.675296, 108410]
+    ['Jeddah', 21.285407, 39.237551, 105343],{infoContent: ''},
+    ['Tabuk', 28.383508, 36.566191, 101628],{infoContent: ''},
+    ['Umm Lajj', 25.021259, 37.268501, 100926],{infoContent: ''},
+    ['Abha', 18.246468, 42.511724, 110690],{infoContent: ''},
+    ['Dammam', 26.43442, 50.10326, 110336],{infoContent: ''},
+    ['Riyadh', 24.713552, 46.675296, 108410],{infoContent: ''}
 ];
 
 // make global variable to get access in all functions
@@ -56,11 +56,11 @@ function locationWeather( i) {
             console.log("icon:"+response.city.id); */
 
             //content of infow window
-            locations[i][3].infoContent = '<div class="info"><h4>' + response.city.name + "</h4> <p>" + response.list[0].weather[0].description +
+            locations[i].infoContent = '<div class="info"><h4>' + response.city.name + "</h4> <p>" + response.list[0].weather[0].description +
                 '</p><h6><img src="http://openweathermap.org/img/w/' + response.list[0].weather[0].icon +
                 '.png" alt="weather description"> ' + response.cnt + "° </h6></div>";
                 //contents[0]=infoContent;
-               console.log("contents[0]"+locations[i][3].infoContent );
+               console.log("contents[0]"+locations[i].infoContent );
         },
         error: function() {
             infoContent = "sorry, Their is error while Loading weather information..please try again..";
@@ -150,7 +150,7 @@ function googleMap() {
         infoWindows[i] = new google.maps.InfoWindow({
            // content: contents[i]
         });
-        infoWindows[i].setContent(locations[i][3].infoContent);
+        infoWindows[i].setContent(locations[i].infoContent);
         //console.log("content value: "+contents[i]);
         //once clicks on the marker
    // });
