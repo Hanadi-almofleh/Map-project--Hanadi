@@ -34,9 +34,9 @@ var infoContent = "city";
     });
 console.log("global");*/
 
-function locationWeather(id) {
+function locationWeather( i) {
     //console.log('locationweather');
-    var weatherUrl = 'http://api.openweathermap.org/data/2.5/forecast?id=' + id + '&APPID=d6b7e573f1e57b0a224436f0e0aa716d&units=metric&country=SA';
+    var weatherUrl = 'http://api.openweathermap.org/data/2.5/forecast?id=' + locations[i][3] + '&APPID=d6b7e573f1e57b0a224436f0e0aa716d&units=metric&country=SA';
     //uncomment this line to check error API 
     //weatherUrl = 'http://api.openweathermap.org/data/2.5/forecast?id=' + id + '&APPID=6b7e573f1e57b0a224436f0e0aa716d&units=metric&country=SA'; 
 
@@ -44,7 +44,7 @@ function locationWeather(id) {
         url: weatherUrl,
         type: 'GET',
         dataType: 'json',
-        async: !1, // this line to read the content 
+        //async: !1, // this line to read the content 
         success: function(response, content) {
             //console.log(response);
             /* console.log("city:"+response.city.name);
@@ -56,11 +56,11 @@ function locationWeather(id) {
             console.log("icon:"+response.city.id); */
 
             //content of infow window
-            infoContent = '<div class="info"><h4>' + response.city.name + "</h4> <p>" + response.list[0].weather[0].description +
+            locations[i][3].infoContent = '<div class="info"><h4>' + response.city.name + "</h4> <p>" + response.list[0].weather[0].description +
                 '</p><h6><img src="http://openweathermap.org/img/w/' + response.list[0].weather[0].icon +
                 '.png" alt="weather description"> ' + response.cnt + "° </h6></div>";
-                contents[0]=infoContent;
-               console.log("contents[0]"+contents[0]);
+                //contents[0]=infoContent;
+               console.log("contents[0]"+locations[i][3].infoContent );
         },
         error: function() {
             infoContent = "sorry, Their is error while Loading weather information..please try again..";
@@ -86,7 +86,8 @@ function googleMap() {
         zoom: 5
     });
 
-  
+
+
    /* $.ajax({
         url:'http://api.openweathermap.org/data/2.5/forecast?id=105343&APPID=d6b7e573f1e57b0a224436f0e0aa716d&units=metric&country=SA',
         type: 'GET',
@@ -110,7 +111,7 @@ function googleMap() {
         gMap.setCenter(coordinates);
     });
      
-    
+   // google.maps.event.addDomListener(window, 'load', pins);
     pins();
    
 
@@ -118,6 +119,7 @@ function googleMap() {
        
 
 
+   // gMap.onload = 
     function pins() {
         
         for (var i = 0; i < locationsLength; i++) {
@@ -139,18 +141,29 @@ function googleMap() {
             animation: google.maps.Animation.DROP,
             title: id
         });
-        contents[i] = locationWeather(locations[i][3]);
+
+    //google.maps.event.addListenerOnce(gMap, 'tilesloaded', function(){
+    //this part runs when the mapobject is created and rendered
+     //   console.log("load gMap");
+        //contents[i] = locationWeather(locations[i][3]);
+        locationWeather(i);
         infoWindows[i] = new google.maps.InfoWindow({
-            content: contents[i]
+           // content: contents[i]
         });
+        infoWindows[i].setContent(locations[i][3].infoContent);
         //console.log("content value: "+contents[i]);
         //once clicks on the marker
-
+   // });
+   //  $(document).ready(function() {
+  
+ 
         markers[i].addListener('click', function clickPin() {
+            
             infoWindows[i].open(gMap, markers[i]);
             this.setAnimation(google.maps.Animation.DROP);
         });
         //}end loop
+    //});
 
     } // end function addPin
 
