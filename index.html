@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--<meta name="viewport" content="initial-scale=1.0">-->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta charset="utf-8">
+    <title>Neighborhood Map</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--<link rel="stylesheet" href="css/bootstrap.css" />-->
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/knockout-3.4.2.js"></script>
+
+</head>
+
+<body>
+    <div id="slideMenu" class="locationsList">
+        <a href="#" class="closeMark" onclick="closeMenu()">&times;</a>
+        <input type="search" id="filter" placeholder="Search for Cities.." data-bind="value: enterLocation, valueUpdate: 'keyup'">
+        <div data-bind="foreach: {data: fn, as: 'city'}">
+            <!--list of locations -->
+            <p>
+                <a href="#" data-bind="text: city, click: $parent.info"></a>
+            </p>
+        </div>
+
+    </div>
+
+    <div id="menu">
+        <!-- <span style="font-size:30px;cursor:pointer" onclick="openSideMenu()">&#9776;open</span>-->
+        <a href="#" onclick="openMenu()">&#9776;Locations</a>
+    </div>
+    <!--</div>xol-md-3-->
+
+    <div id="map"></div>
+    <!-- </div>  co-md-12 -->
+    <!--</div>row -->
+    <!-- </div> CONTAINER -->
+    <!--</div> -->
+
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnd7HsMC1D1fnHiI9aZTeaJcFqEGUoxPA&callback=googleMap"></script>
+    <script src="js/script2.js"></script>
+</body>
+
+</html>

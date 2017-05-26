@@ -1,0 +1,67 @@
+#map {
+    /* position: absolute;
+      overflow: visible;*/
+    
+    position: fixed;
+    height: 100%;
+}
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 25px;
+}
+.info {
+    text-align: center;
+}
+.locationsList {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    background-color: #424242;
+    overflow-x: hidden;
+    transition: 0.5s;
+    z-index: 1;
+    padding-top: 50px;
+}
+.locationsList a {
+    text-align: center;
+    display: block;
+    transition: 0.7s;
+}
+.closeMark {
+    position: absolute;
+    top: 0;
+    right: 25px;
+}
+a {
+    color: #0080FF;
+    text-decoration: none;
+}
+.locationsList a:hover {
+    color: #FFFFFF;
+}
+#menu a {
+    transition: margin-left .7s;
+    text-decoration: none;
+    padding: 16px;
+}
+#filter {
+    position: relative;
+    width: 100%;
+    padding: 12px;
+    /*display: flex;   
+    flex-wrap: wrap;*/
+}
+@media screen and (max-height: 400px) {
+    .locationsList {
+        padding-top: 15px;
+    }
+    #filter {
+        margin-top: 30px;
+    }
+    .locationsList a {
+        font-size: 18px;
+    }
+}
